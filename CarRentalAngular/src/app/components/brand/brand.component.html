@@ -1,1 +1,4 @@
-<p>brand works!</p>
+<div type="button" class="btn btn-secondary">Markalar</div>
+<ul *ngFor="let brand of brands" class="list-group">
+  <button type="button" class="btn btn-primary">{{brand.brandName}}</button>
+</ul>

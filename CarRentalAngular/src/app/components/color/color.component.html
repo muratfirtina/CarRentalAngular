@@ -1,1 +1,4 @@
-<p>color works!</p>
+<div type="button" class="btn btn-secondary">Renkler</div>
+<ul *ngFor="let color of colors" class="list-group">
+    <button type="button" class="btn btn-primary">{{color.colorName}}</button>
+  </ul>
