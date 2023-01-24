@@ -17,7 +17,7 @@ import { CustomerComponent } from './components/customer/customer.component';
     BrandComponent,
     ColorComponent,
     NaviComponent,
-    CustomerComponent
+    CustomerComponent,
   ],
   imports: [
     BrowserModule,

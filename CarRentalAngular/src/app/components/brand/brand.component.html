@@ -1,4 +1,11 @@
-<div type="button" class="btn btn-secondary">Markalar</div>
-<ul *ngFor="let brand of brands" class="list-group">
-  <button type="button" class="btn btn-primary">{{brand.brandName}}</button>
+<ul class="list-group">
+  <li (click)="setCurrentBrandClear()"
+  routerLink="/cars"
+  [class]="getAllBrandClass()"
+  >Tüm Markalar</li>
+
+  <li (click)="setCurrentBrand(brand)" 
+  routerLink="/cars/brand/{{brand.brandId}}"
+  *ngFor="let brand of brands" 
+  [class]="getCurrentBrandClass(brand)">{{brand.brandName}}</li>
 </ul>
