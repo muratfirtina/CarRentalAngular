@@ -4,20 +4,20 @@
 <table *ngIf="dataLoaded==true" class="table">
     <thead>
         <tr>
-            <th>CarId</th>
-            <th>BrandId</th>
-            <th>ColorId</th>
-            <th>ModelYear</th>
-            <th>DailyPrice</th>
-            <th>Description</th>
+            <th>Model</th>
+            <th>Marka</th>
+            <th>Renk</th>
+            <th>Model Yılı</th>
+            <th>Günlük Fiyat</th>
+            
         </tr>
     </thead>
-    <tr *ngFor="let car of cars">
-        <td>{{car.id}}</td>
+    <tr routerLink="/cars/car-detail/{{car.id}}" *ngFor="let car of cars">
+        <td>{{car.description}}</td>
         <td>{{car.brandId}}</td>
         <td>{{car.colorId}}</td>
         <td>{{car.modelYear}}</td>
         <td>{{car.dailyPrice}}</td>
-        <td>{{car.description}}</td>
+        
     </tr>
 </table>
