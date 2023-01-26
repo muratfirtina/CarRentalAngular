@@ -12,6 +12,14 @@
             
         </tr>
     </thead>
+    <!-- <tr routerLink="/cars/car-detail/{{car.id}}" *ngFor="let car of carDetails">
+        <td>{{car.carName}}</td>
+        <td>{{car.brandName}}</td>
+        <td>{{car.colorName}}</td>
+        <td>{{car.modelYear}}</td>
+        <td>{{car.dailyPrice}}</td>
+        
+    </tr> -->
     <tr routerLink="/cars/car-detail/{{car.id}}" *ngFor="let car of cars">
         <td>{{car.description}}</td>
         <td>{{car.brandId}}</td>
@@ -21,3 +29,12 @@
         
     </tr>
 </table>
+
+<!-- <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div> -->
