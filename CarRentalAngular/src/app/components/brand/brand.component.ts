@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Brand } from 'src/app/models/brand';
+import { CarDetailDto } from 'src/app/models/carDetailDto';
 import { BrandService } from 'src/app/services/brand.service';
 import { ColorService } from 'src/app/services/color.service';
 
@@ -11,6 +12,7 @@ import { ColorService } from 'src/app/services/color.service';
 export class BrandComponent implements OnInit {
   brands:Brand[] = [];
   currentBrand:Brand | undefined;
+  carDetails: CarDetailDto;
 
 
   constructor(private brandService:BrandService, privatecolorService:ColorService ) { }
@@ -21,6 +23,7 @@ export class BrandComponent implements OnInit {
   getBrands(){
     this.brandService.getBrands().subscribe(response => {
       this.brands = response.data;
+      
     
     })
   }
