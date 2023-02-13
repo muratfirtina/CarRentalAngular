@@ -112,15 +112,21 @@ export class CarComponent implements OnInit {
     if(brandId == 0 && colorId != 0) //brandid 0 ise colorid ye göre filtreleme yapar
     {
       this.carService.getCarsByColor(colorId).subscribe(response => {
-        this.carDetails = response.data;
+        if (response.data.length == 0) {
+          this.toastrService.error("Araba mevcut değil.");
+        }else{ this.carDetails = response.data;
         this.toastrService.success("Başarılı bir şekilde listelendi.")
+        return;}
       })
     }
     else if(colorId == 0 && brandId != 0) //colorid 0 ise brandid ye göre filtreleme yapar
     {
       this.carService.getCarsByBrand(brandId).subscribe(response => {
-        this.carDetails = response.data;
+        if (response.data.length == 0) {
+          this.toastrService.error("Araba mevcut değil.");
+        }else{ this.carDetails = response.data;
         this.toastrService.success("Başarılı bir şekilde listelendi.")
+        return;}
       })
     }
     else if (brandId == 0 && colorId == 0) { //her ikisi de 0 ise tüm araçları listeler
@@ -128,13 +134,17 @@ export class CarComponent implements OnInit {
         this.carDetails = response.data
         this.dataLoaded = true;
         this.toastrService.success("Başarılı bir şekilde listelendi.")
+        return;
       });
       
     }
     else{ //her ikisi de 0 değilse brandid ye göre vew colorid ye göre filtreleme yapar
     this.carService.getCarsByBrandAndColor(brandId, colorId).subscribe((response) => {
-      this.carDetails = response.data;
+      if (response.data.length == 0) {
+        this.toastrService.error("Araba mevcut değil.");
+      }else{ this.carDetails = response.data;
       this.toastrService.success("Başarılı bir şekilde listelendi.")
+      return;}
     });
     }
 
