@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Brand } from 'src/app/models/brand';
 import { CarDetailDto } from 'src/app/models/carDetailDto';
 import { BrandService } from 'src/app/services/brand.service';
+import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
 
 @Component({
@@ -12,10 +13,14 @@ import { ColorService } from 'src/app/services/color.service';
 export class BrandComponent implements OnInit {
   brands:Brand[] = [];
   currentBrand:Brand | undefined;
-  carDetails: CarDetailDto;
+  carDetail: CarDetailDto;
+  carDetails: CarDetailDto[] = [];
+  dataLoaded = false;
 
 
-  constructor(private brandService:BrandService, privatecolorService:ColorService ) { }
+  constructor(private brandService:BrandService,
+     private colorService:ColorService, 
+     private carService:CarService ) { }
 
   ngOnInit(): void {
     this.getBrands();
@@ -48,4 +53,5 @@ export class BrandComponent implements OnInit {
     this.currentBrand = undefined;
   }
   
- }
+  
+}

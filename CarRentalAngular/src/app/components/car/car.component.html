@@ -1,4 +1,67 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
+<h3 *ngIf="cars; else noCar">{{title}}</h3>
+
+<div class="row">
+  <ng-template #noCar>
+    Bu Marka Araç Yoktur.
+  </ng-template>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Araba Ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText"
+      placeholder="arama ifadesi giriniz">
+  </div>
+  <div *ngIf="filterText.length>2" class="alert alert-success">
+    {{filterText}} aradınız.
+  </div>
+  
+  <div *ngIf="dataLoaded==true" class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <select [(ngModel)]="currentBrand" class="form-select p-1 mb-2 bg-primary text-white" aria-label="Default select example">
+          <option value="0" selected>Markalar</option>
+          <option *ngFor="let brand of brands" [value]="brand.brandId">{{brand.brandName}}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select [(ngModel)]="currentColor" class="form-select p-1 mb-2 bg-primary text-white" aria-label="Default select example">
+          <option value="0" selected>Renkler</option>
+          <option *ngFor="let color of colors" [value]="color.colorId">{{color.colorName}}</option>
+        </select>
+      </div>
+      <div class="col-md-1" >
+        <button (click)="carsFilterByBrandAndColor(currentBrand,currentColor)" class="btn btn-primary p-1">Seç</button>
+      </div>
+      <div class="col-md-2" >
+        <button (click)="clearFilter()" class="btn btn-primary p-1">Seçimi Temizle</button>
+      </div>
+    </div>
+  </div>
+
+  <br> <br>
+
+
+  <div *ngFor="let car of carDetails | filterPipe:filterText" class="card" style="width: 18rem;">
+    <img [src]="car.carImages.length > 0 ? 'http://localhost:5096/images/' + car.carImages[0] : ''" class="card-img-top"
+      alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{car.carName}}</h5>
+      <p class="card-text">{{car.brandName}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Model : {{car.modelYear}}</li>
+      <li class="list-group-item">Günlük Kiralama Fiyatı : {{car.dailyPrice |currency: "TRY":"symbol-narrow":"1.2-2"}}
+      </li>
+
+    </ul>
+    <div class="card-body">
+      <a routerLink="/cars/car-detail/{{car.id}}" (click)="getCarDetailsById" class="btn btn-primary">Detay</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 <table *ngIf="dataLoaded==true" class="table">
@@ -20,21 +83,4 @@
         <td>{{car.dailyPrice}}</td>
         
     </tr>
-    <!-- <tr routerLink="/cars/car-detail/{{car.id}}" *ngFor="let car of cars">
-        <td>{{car.description}}</td>
-        <td>{{car.brandId}}</td>
-        <td>{{car.colorId}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        
-    </tr> -->
-</table>
-
-<!-- <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div> -->
+</table> -->

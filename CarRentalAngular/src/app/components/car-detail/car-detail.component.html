@@ -1,8 +1,30 @@
-<div *ngIf="carDetailsById">
-    <h1>{{ carDetailsById.carName }}</h1>
-    <p>Marka: {{ carDetailsById.brandName }}</p>
-    <p>Renk: {{ carDetailsById.colorName }}</p>
-    <p>Model Yılı: {{ carDetailsById.modelYear }}</p>
-    <p>Günlük Fiyat: {{ carDetailsById.dailyPrice }}</p>
-    <!-- <img [src]="carDetailsById.imagePath" alt="Car Image"> -->
+  <div *ngIf="currentCar">
+  <h1>{{ currentCar.carName }}</h1>
+  <p>Marka: {{ currentCar.brandName }}</p>
+  <p>Renk: {{ currentCar.colorName }}</p>
+  <p>Model Yılı: {{ currentCar.modelYear }}</p>
+  <p>Günlük Fiyat: {{ currentCar.dailyPrice }}</p>
+  </div>
+  
+
+  <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button *ngFor="let image of currentCar.carImages" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      
+    </div>
+    <div class="carousel-inner">
+      <div *ngFor="let image of currentCar.carImages let i = index" class="carousel-item active" [class.active]="i === 0">
+        <img [src]="imageUrl + image" class="d-block w-100" alt="...">
+      </div>
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>

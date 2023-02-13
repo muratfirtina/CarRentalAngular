@@ -1,3 +1,5 @@
+import { CarImage } from "./car-image";
+
 export interface CarDetailDto {
     id: number;
     brandId: number;
@@ -7,6 +9,7 @@ export interface CarDetailDto {
     colorName: string;
     modelYear: number;
     dailyPrice: number;
-    imagePath: string; //carImages:CarImage[]; olarak değişe bilir bakacağım.
+    carImages: CarImage[];
+    carImage: CarImage;
 
 }
