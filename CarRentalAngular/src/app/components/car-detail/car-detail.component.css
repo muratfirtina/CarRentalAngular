@@ -1,0 +1,8 @@
+.carousel {
+    max-width: 500px; /* örneğin */
+    margin: auto;
+  }
+  .my-image {
+    max-height: 400px; /* örneğin */
+    object-fit: contain; /* resmin orijinal boyutunu korumak için */
+  }
