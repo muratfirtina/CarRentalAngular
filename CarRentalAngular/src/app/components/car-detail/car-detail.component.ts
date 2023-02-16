@@ -64,4 +64,7 @@ export class CarDetailComponent implements OnInit {
       return "carousel-item"
     }
   }
+  rentalAdd(car:CarDetailDto){
+    console.log(car);
+  }
 }
