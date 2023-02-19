@@ -2,16 +2,17 @@
   <h1>{{ currentCar.carName }}</h1>
   <div class="row">
     <div class="col-md-6">
-      <div id="carouselExampleIndicators" class="carousel slide">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button *ngFor="let image of currentCar.carImages; let i = index" type="button"
             data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" class="active" aria-current="true"
-            aria-label="Slide 1"></button>
+            attr.aria-label="Slide {{i+1}}" [style.background-image]="'url(' + imageUrl + image + ')'"
+            [class.active]="i === 0"></button>
         </div>
         <div class="carousel-inner">
-          <div *ngFor="let image of currentCar.carImages; let i = index" class="carousel-item active"
-            [class.active]="i === 0">
-            <img [src]="imageUrl + image" class="d-block w-100" alt="..." />
+          <div *ngFor="let image of currentCar.carImages; let i = index" class="carousel-item" [class.active]="i === 0">
+            <img [src]="imageUrl + image" alt="..." class="d-block w-100" data-bs-target="#imageModal"
+              data-bs-toggle="modal" (click)="selectedImageIndex = i" />
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -26,24 +27,71 @@
         </button>
       </div>
     </div>
-    
+
     <div class="col-md-4">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Marka:   {{currentCar.brandName}}</li>
-        <li class="list-group-item">Renk:   {{currentCar.colorName}}</li>
-        <li class="list-group-item">Model Yılı:   {{currentCar.modelYear}}</li>
-        <li class="list-group-item">Fiyat:   {{currentCar.dailyPrice}}</li>
-        
+        <li class="list-group-item">Marka: {{currentCar.brandName}}</li>
+        <li class="list-group-item">Renk: {{currentCar.colorName}}</li>
+        <li class="list-group-item">Model Yılı: {{currentCar.modelYear}}</li>
+        <li class="list-group-item">Fiyat: {{currentCar.dailyPrice}}</li>
+
       </ul>
     </div>
-    
+
   </div>
-  <br>,<br>
-  
-<div class="row">
-   <div class="col-md-2">
+  <br><br>
+
+  <div class="row">
+    <div class="col-md-2">
       <button class="btn btn-primary" (click)="rentalAdd(currentCar)">
         Kirala
       </button>
-   </div>
- </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">{{currentCar.carName}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="imageUrl+ currentCar.carImages[selectedImageIndex]" alt="" class="img-fluid">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden" (click)="previousImage()">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#imageModal" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden" (click)="nextImage()">Next</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-primary" (click)="previousImage()">Önceki</button>
+        <button type="button" class="btn btn-primary" (click)="nextImage()">Sonraki</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <script>
+    const modalEl = document.getElementById('imageModal');
+    const imageButtons = Array.from(document.querySelectorAll('#carouselExampleIndicators button'));
+  
+    let currentImageIndex = 0;
+    
+    modalEl.addEventListener('show.bs.modal', function (event) {
+      currentImageIndex = parseInt(event.relatedTarget.getAttribute('data-bs-slide-to'), 10);
+      modalEl.querySelector('img').setAttribute('src', imageUrl + currentCar.carImages[currentImageIndex]);
+    });
+  
+    imageButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        currentImageIndex = index;
+      });
+    });
+  </script>
+  

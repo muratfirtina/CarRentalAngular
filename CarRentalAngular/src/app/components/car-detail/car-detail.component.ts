@@ -18,6 +18,8 @@ export class CarDetailComponent implements OnInit {
   carImage: CarImage ;
   imageUrl: string = 'http://localhost:5096/images/';
   filterText = '';
+  selectedImageIndex: number;
+  currentImageIndex: number;
 
   constructor(
     private carService: CarService,
@@ -64,7 +66,26 @@ export class CarDetailComponent implements OnInit {
       return "carousel-item"
     }
   }
+
+  previousImage() {
+    if (this.selectedImageIndex === 0) {
+      this.selectedImageIndex = this.currentCar.carImages.length - 1;
+    } else {
+      this.selectedImageIndex--;
+    }
+  }
+  
+  nextImage() {
+    if (this.selectedImageIndex === this.currentCar.carImages.length - 1) {
+      this.selectedImageIndex = 0;
+    } else {
+      this.selectedImageIndex++;
+    }
+  }
+
   rentalAdd(car:CarDetailDto){
     console.log(car);
   }
+
+
 }

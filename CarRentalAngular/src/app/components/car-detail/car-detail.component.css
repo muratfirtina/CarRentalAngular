@@ -1,8 +1,38 @@
-.carousel {
-    max-width: 500px; /* örneğin */
-    margin: auto;
-  }
-  .my-image {
-    max-height: 400px; /* örneğin */
-    object-fit: contain; /* resmin orijinal boyutunu korumak için */
-  }
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-color: #e9ecef;
+}
+
+.carousel-inner img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+}
+
+.carousel-indicators button {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #fff;
+  border-radius: none;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0 10px;
+  box-shadow: none;
+}
+
+.carousel-indicators button.active {
+  border: 3px solid #fff;
+  box-shadow: none;
+}
+
+.modal-dialog {
+  max-width: 1000px;
+  max-height: 1000px;
+
+}

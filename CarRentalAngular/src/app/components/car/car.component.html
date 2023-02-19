@@ -40,7 +40,7 @@
 
 
   <div *ngFor="let car of carDetails | filterPipe:filterText" class="card" style="width: 18rem;">
-    <img [src]="car.carImages.length > 0 ? 'http://localhost:5096/images/' + car.carImages[0] : ''" class="card-img-top"
+    <img [src]="car.carImages.length > 0 ? imageUrl + car.carImages[0] : ''" class="card-img-top"
       alt="...">
     <div class="card-body">
       <h5 class="card-title">{{car.carName}}</h5>
@@ -57,30 +57,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<!-- <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-<table *ngIf="dataLoaded==true" class="table">
-    <thead>
-        <tr>
-            <th>Model</th>
-            <th>Marka</th>
-            <th>Renk</th>
-            <th>Model Yılı</th>
-            <th>Günlük Fiyat</th>
-            
-        </tr>
-    </thead>
-    <tr routerLink="/cars/car-detail/{{car.id}}" *ngFor="let car of carDetails">
-        <td>{{car.carName}}</td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        
-    </tr>
-</table> -->

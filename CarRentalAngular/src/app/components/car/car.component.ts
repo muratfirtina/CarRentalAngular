@@ -28,7 +28,7 @@ export class CarComponent implements OnInit {
   carImage: CarImage;
   dataLoaded = false;
   title = 'Araba Listesi';
-  carPath = 'http://localhost:5096/images/';
+  imageUrl: string = 'http://localhost:5096/images/';
   filterText = '';
   
   
