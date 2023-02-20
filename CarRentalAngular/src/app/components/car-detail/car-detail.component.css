@@ -4,7 +4,7 @@
   height: 450px;
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: left center;
   background-color: #e9ecef;
 }
 
@@ -35,4 +35,12 @@
   max-width: 1000px;
   max-height: 1000px;
 
+}
+.modal-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9ecef;
+  height: 600px;
+  overflow: auto;
 }
